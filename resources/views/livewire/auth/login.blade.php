@@ -58,7 +58,8 @@
             </form>
 
             <flux:subheading class="text-center">
-                First time around here? <flux:link href="#">Sign up for free</flux:link>
+                First time around here? <flux:link href="{{ route('register') }}" wire:navigate>Sign up for free
+                </flux:link>
             </flux:subheading>
         </div>
     </div>
