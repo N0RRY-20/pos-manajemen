@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Auth;
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
@@ -42,7 +41,11 @@ class Login extends Component
 
         session()->regenerate();
 
-        dd('Login successful');
+        if (Auth::user()->isAdmin()) {
+            return $this->redirectIntended(route('admin.dashboard'), navigate: true);
+        }
+
+        return $this->redirectIntended(route('dashboard'), navigate: true);
     }
 
     protected function ensureIsNotRateLimited(): void
@@ -62,7 +65,7 @@ class Login extends Component
 
     protected function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
+        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
     }
 
     public function render()

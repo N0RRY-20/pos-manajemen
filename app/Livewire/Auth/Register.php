@@ -16,13 +16,15 @@ class Register extends Component
 {
     #[Validate('required|string|max:255')]
     public string $name = '';
+
     #[Validate('required|email|unique:users')]
     public string $email = '';
+
     #[Validate('required|confirmed|min:8')]
     public string $password = '';
+
     #[Validate('required')]
     public string $password_confirmation = '';
-
 
     public function register(): void
     {
@@ -38,9 +40,8 @@ class Register extends Component
 
         session()->regenerate();
 
-        dd('Registration successful! Redirecting to dashboard...');
+        $this->redirect(route('dashboard'), navigate: true);
     }
-
 
     public function render()
     {
