@@ -26,9 +26,10 @@
 
         <flux:sidebar.nav>
             <flux:sidebar.item icon="home" href="{{ route('admin.dashboard') }}"
-                :current="request()->routeIs('admin.dashboard')">Dashboard</flux:sidebar.item>
-            <flux:sidebar.item icon="inbox" badge="12" href="#" :current="false">Inbox
-            </flux:sidebar.item>
+                :current="request()->routeIs('admin.dashboard')" wire:navigate>Dashboard</flux:sidebar.item>
+
+            <flux:sidebar.item icon="archive-box" href="{{ route('admin.products') }}"
+                :current="request()->routeIs('admin.products')" wire:navigate>Produk</flux:sidebar.item>
             <flux:sidebar.item icon="document-text" href="#">Documents</flux:sidebar.item>
             <flux:sidebar.item icon="calendar" href="#">Calendar</flux:sidebar.item>
 
